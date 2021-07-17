@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Weekly Graph',
       theme: appThemeData,
@@ -23,14 +23,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key}) : super(key: key);
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
+class MyHomePage extends StatelessWidget {
   var statController = Get.put(StatController());
 
   @override
@@ -121,14 +114,14 @@ class _MyHomePageState extends State<MyHomePage> {
           child: DecoratedBox(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(8.0)),
-              color: Theme.of(context).primaryColor,
+              color: Theme.of(Get.context!).primaryColor,
             ),
             child: Padding(
               padding:
                   const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
               child: Text(
                 statController.currentWeek.value,
-                style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                style: Theme.of(Get.context!).textTheme.bodyText1!.copyWith(
                       color: Colors.white,
                       fontSize: 17.0,
                     ),
@@ -148,7 +141,7 @@ class _MyHomePageState extends State<MyHomePage> {
             statController.onPreviousWeek();
           },
           elevation: 2.0,
-          fillColor: Theme.of(context).primaryColor,
+          fillColor: Theme.of(Get.context!).primaryColor,
           child: Icon(
             Icons.arrow_back_ios_rounded,
             color: Colors.white,
@@ -173,7 +166,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 statController.onNextWeek();
               },
               elevation: 2.0,
-              fillColor: Theme.of(context).primaryColor,
+              fillColor: Theme.of(Get.context!).primaryColor,
               child: Icon(
                 Icons.arrow_forward_ios_rounded,
                 color: Colors.white,
@@ -195,12 +188,12 @@ class _MyHomePageState extends State<MyHomePage> {
           Expanded(
             child: Text(
               title,
-              style: Theme.of(context).textTheme.headline3,
+              style: Theme.of(Get.context!).textTheme.headline3,
             ),
           ),
           Text(
             subTitle,
-            style: Theme.of(context).textTheme.bodyText1,
+            style: Theme.of(Get.context!).textTheme.bodyText1,
           )
         ],
       ),
@@ -248,7 +241,7 @@ class _MyHomePageState extends State<MyHomePage> {
               child: DecoratedBox(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                  color: Theme.of(context).accentColor,
+                  color: Theme.of(Get.context!).accentColor,
                 ),
                 child: Center(
                   child: Padding(
@@ -256,7 +249,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Text(
                       '${model.stat} unit',
                       textAlign: TextAlign.center,
-                      style: Theme.of(context)
+                      style: Theme.of(Get.context!)
                           .textTheme
                           .bodyText1!
                           .copyWith(fontSize: 12.0, color: Colors.white),
@@ -282,11 +275,11 @@ class _MyHomePageState extends State<MyHomePage> {
               padding: const EdgeInsets.symmetric(horizontal: 4.0),
               child: Text(
                 model.day,
-                style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                style: Theme.of(Get.context!).textTheme.bodyText1!.copyWith(
                       fontSize: 13,
                       color: model.isToday
-                          ? Theme.of(context).splashColor
-                          : Theme.of(context).primaryColor,
+                          ? Theme.of(Get.context!).splashColor
+                          : Theme.of(Get.context!).primaryColor,
                     ),
               ),
             ),
@@ -300,7 +293,7 @@ class _MyHomePageState extends State<MyHomePage> {
     if (isToday) {
       return BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(4.0)),
-        color: Theme.of(context).primaryColor,
+        color: Theme.of(Get.context!).primaryColor,
       );
     } else {
       return BoxDecoration();
